@@ -11,7 +11,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
-        python-version: '3.8'
+        with:
+          python-version: '3.8'
       - name: run bot
         run: |
           cd telegram_bots/reminder_gw_bot
