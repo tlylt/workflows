@@ -1,0 +1,18 @@
+name: "reminder_gw_bot"
+
+on:
+  push:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  bot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        python-version: '3.8'
+      - run: |
+        cd telegram_bots/reminder_gw_bot
+        pip install -r requirements.txt
+        python bot.py
