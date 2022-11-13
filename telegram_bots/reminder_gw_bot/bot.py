@@ -20,11 +20,14 @@ def main():
     dp.add_handler(CommandHandler("start", help_command_handler))
 
     # get quote
-    response = requests.get("https://quotes.rest/qod?language=en")
-    msg = response.json().get("contents").get("quotes")[0].get("quote")
-    # send chat
-    dp.bot.send_message(os.environ.get("MY_CHAT_ID", ""), msg)
-    print("DONE!")
+    try:
+        response = requests.get("https://quotes.rest/qod?language=en")
+        msg = response.json().get("contents").get("quotes")[0].get("quote")
+        # send chat
+        dp.bot.send_message(os.environ.get("MY_CHAT_ID", ""), msg)
+        print("DONE!")
+    except Exception as e:
+        print(e)
 
 if __name__ == "__main__":
     load_dotenv(find_dotenv())
